@@ -1,0 +1,23 @@
+
+server:
+  port: 10062
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:10050/eureka/
+
+spring:
+  application:
+    name: config-server
+  #热部署
+  devtools:
+    livereload:  #是否支持livereload
+      enabled: true
+      port: 35729
+    restart:
+      enabled: true #是否启动热部署
+      additional-paths: src/main/java
+      exclude: test
+
+
