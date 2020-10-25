@@ -1,0 +1,65 @@
+server:
+  port: 501
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:10050/eureka/
+
+spring:
+  application:
+    name: micro-order
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 数据库连接池Druid
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/vans?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+      #driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123654
+      # 控制台
+      stat-view-servlet:
+        login-username: admin
+        login-password: admin
+        enabled: true
+        url-pattern: /druid/*
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      query-timeout: 90
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall,slf4j
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 2000
+          db-type: mysql
+          merge-sql: false
+        wall:
+          config:
+            delete-allow: true
+            drop-table-allow: false
+          enabled: true
+          db-type: mysql
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      use-global-data-source-stat: true
+  #热部署
+  devtools:
+    livereload:  #是否支持livereload
+      enabled: true
+      port: 35729
+    restart:
+      enabled: true #是否启动热部署
+      additional-paths: src/main/java
+      exclude: test
+feign:
+  hystrix:
+    enabled: true
+
