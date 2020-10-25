@@ -8,8 +8,6 @@ eureka:
       defaultZone: http://127.0.0.1:10050/eureka/
 
 spring:
-  application:
-    name: config-server
   #热部署
   devtools:
     livereload:  #是否支持livereload
